@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="biblioteka_siDataSet" targetNamespace="http://tempuri.org/biblioteka_siDataSet.xsd" xmlns:mstns="http://tempuri.org/biblioteka_siDataSet.xsd" xmlns="http://tempuri.org/biblioteka_siDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="biblioteka_si_ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="biblioteka_si_ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BibliotekaSi.Properties.Settings.GlobalReference.Default.biblioteka_si_ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="izdadeniTableAdapter" GeneratorDataComponentClassName="izdadeniTableAdapter" Name="izdadeni" UserDataComponentName="izdadeniTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="biblioteka_si_ConnectionString (Settings)" DbObjectName="biblioteka_si.izdadeni" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `kniga_id`, `ucenik_id`, `datum` FROM `izdadeni`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="knigaTableAdapter" GeneratorDataComponentClassName="knigaTableAdapter" Name="kniga" UserDataComponentName="knigaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="biblioteka_si_ConnectionString (Settings)" DbObjectName="biblioteka_si.kniga" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `kniga_id`, `nalsov`, `pisatel` FROM `kniga`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ucenikTableAdapter" GeneratorDataComponentClassName="ucenikTableAdapter" Name="ucenik" UserDataComponentName="ucenikTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="biblioteka_si_ConnectionString (Settings)" DbObjectName="biblioteka_si.ucenik" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `ucenik_id`, `ime`, `prezime`, `klas`, `broj`, `email`, `profesor` FROM `ucenik`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="biblioteka_siDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="biblioteka_siDataSet" msprop:Generator_UserDSName="biblioteka_siDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="izdadeni" msprop:Generator_TableClassName="izdadeniDataTable" msprop:Generator_TableVarName="tableizdadeni" msprop:Generator_TablePropName="izdadeni" msprop:Generator_RowDeletingName="izdadeniRowDeleting" msprop:Generator_RowChangingName="izdadeniRowChanging" msprop:Generator_RowEvHandlerName="izdadeniRowChangeEventHandler" msprop:Generator_RowDeletedName="izdadeniRowDeleted" msprop:Generator_UserTableName="izdadeni" msprop:Generator_RowChangedName="izdadeniRowChanged" msprop:Generator_RowEvArgName="izdadeniRowChangeEvent" msprop:Generator_RowClassName="izdadeniRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="kniga" msprop:Generator_TableClassName="knigaDataTable" msprop:Generator_TableVarName="tablekniga" msprop:Generator_TablePropName="kniga" msprop:Generator_RowDeletingName="knigaRowDeleting" msprop:Generator_RowChangingName="knigaRowChanging" msprop:Generator_RowEvHandlerName="knigaRowChangeEventHandler" msprop:Generator_RowDeletedName="knigaRowDeleted" msprop:Generator_UserTableName="kniga" msprop:Generator_RowChangedName="knigaRowChanged" msprop:Generator_RowEvArgName="knigaRowChangeEvent" msprop:Generator_RowClassName="knigaRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ucenik" msprop:Generator_TableClassName="ucenikDataTable" msprop:Generator_TableVarName="tableucenik" msprop:Generator_TablePropName="ucenik" msprop:Generator_RowDeletingName="ucenikRowDeleting" msprop:Generator_RowChangingName="ucenikRowChanging" msprop:Generator_RowEvHandlerName="ucenikRowChangeEventHandler" msprop:Generator_RowDeletedName="ucenikRowDeleted" msprop:Generator_UserTableName="ucenik" msprop:Generator_RowChangedName="ucenikRowChanged" msprop:Generator_RowEvArgName="ucenikRowChangeEvent" msprop:Generator_RowClassName="ucenikRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
