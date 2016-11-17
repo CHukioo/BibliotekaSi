@@ -16,5 +16,11 @@ namespace BibliotekaSi
             PrvTest test = new PrvTest();
             Assert.AreEqual(31, test.Soberi(20, 11));
         }
+
+        [TestCase]
+        public void ajdavidam()
+        {
+            Form1 kur = new Form1();
+        }
     }
 }

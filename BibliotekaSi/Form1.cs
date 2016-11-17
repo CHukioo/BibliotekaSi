@@ -2,11 +2,13 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data;
+using NLog;
 
 namespace BibliotekaSi
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -14,8 +16,10 @@ namespace BibliotekaSi
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            select();
+            selectUcenik();
             selectKniga();
+            Logger log = LogManager.GetCurrentClassLogger();
+            log.Error("ej ej fatalno e");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -52,7 +56,7 @@ namespace BibliotekaSi
 
                 conn.Close();
                     MessageBox.Show("Успешен внес за: "+textBox1.Text+" "+textBox2.Text);
-                select();
+                selectUcenik();
 
                 textBox1.Text = "";
                 textBox2.Text = "";
@@ -68,7 +72,7 @@ namespace BibliotekaSi
         }
 
         // metod koj go polni data grido kaj ucenik-profesor
-        public void select()
+        public void selectUcenik()
         {
             String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
             MySqlConnection conn = new MySqlConnection(konekcija);
@@ -87,6 +91,7 @@ namespace BibliotekaSi
             bs.DataSource = ds.Tables[0];
             dataGridView1.DataSource = bs;
         }
+
         public void selectKniga()
         {
             String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
@@ -146,7 +151,7 @@ namespace BibliotekaSi
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 MessageBox.Show("Успешно бришење!");
-                select();
+                selectUcenik();
             }
             catch (MySqlException err)
             {
