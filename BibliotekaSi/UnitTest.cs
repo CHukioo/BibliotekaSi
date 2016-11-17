@@ -14,7 +14,7 @@ namespace BibliotekaSi
         public void Add()
         {
             PrvTest test = new PrvTest();
-            Assert.AreEqual(1, test.Soberi(20, 11));
+            Assert.AreEqual(31, test.Soberi(20, 11));
         }
     }
 }
