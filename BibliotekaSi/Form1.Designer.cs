@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -98,6 +98,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ИЗДАДИ";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1082, 586);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "ВРАТИ";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -138,7 +148,7 @@
             this.button4.TabIndex = 12;
             this.button4.Text = "БРИШИ";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.brisiKnigaBtn);
             // 
             // textBox11
             // 
@@ -154,7 +164,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(203, 20);
             this.textBox8.TabIndex = 10;
-            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox8_KeyPress);
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.prebaruvanjeKnigaBox);
             // 
             // label7
             // 
@@ -203,7 +213,7 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "ВНЕСИ";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.vnesiKnigaBtn);
             // 
             // textBox10
             // 
@@ -271,7 +281,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "БРИШИ";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.brisiUcenikBtn);
             // 
             // textBox7
             // 
@@ -296,7 +306,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(133, 20);
             this.textBox6.TabIndex = 12;
-            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.prebaruvanjeUcenikBox);
             // 
             // checkBox1
             // 
@@ -370,7 +380,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "ВНЕСИ";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.vnesiUcenikBtn);
             // 
             // label5
             // 
@@ -416,7 +426,6 @@
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Име";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox5
             // 
@@ -462,16 +471,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "ИЗВЕШТАЈ";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1082, 586);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "ВРАТИ";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

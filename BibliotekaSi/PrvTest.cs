@@ -12,5 +12,31 @@ namespace BibliotekaSi
         {
             return a + b;
         }
+
+        public bool VnesUcenikProverka(string ime, string prezime, string klas, string br, string email, string profesor)
+        {
+            if (profesor == "0") { 
+                if (ime != "" && prezime!="" && klas != "" && br != "" && email != "" && profesor != "")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (ime != "" && prezime != "" && email != "" && profesor != "")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }

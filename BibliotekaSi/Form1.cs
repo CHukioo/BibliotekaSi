@@ -19,150 +19,72 @@ namespace BibliotekaSi
             selectUcenik();
             selectKniga();
             Logger log = LogManager.GetCurrentClassLogger();
-            log.Error("ej ej fatalno e");
+            log.Info("Programata startuvana");
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        //vnes na podatoci vo baza(ucenik/kniga)
+        private void vnesiUcenikBtn(object sender, EventArgs e)
         {
             Logger log = LogManager.GetCurrentClassLogger();
-            log.Error("uspesno kliknato kopce");
+            //definiram vrednosti sto ce vleza vo metod VnesUcenikProverka vo PrvTest
+            String prof = "0";
+            String ime = textBox1.Text;
+            String prezime = textBox2.Text;
+            String klas = textBox3.Text;
+            String broj = textBox4.Text;
+            String email = textBox5.Text;
 
-            try {
-                String prof = "0";
-                if (checkBox1.Checked)
-                {
-                    prof = "1";
+            if (checkBox1.Checked)
+            {
+                prof = "1";
+            }
+
+            PrvTest klasa = new PrvTest();
+            if (klasa.VnesUcenikProverka(ime, prezime, klas, broj, email, prof)) { 
+
+                try {
+               
+                    String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+                    MySqlConnection conn = new MySqlConnection(konekcija);
+
+                    conn.Open();
+
+                    String komanda = "insert into ucenik (ime, prezime, klas, broj, email, profesor) values (@ime, @prezime, @klas, @broj, @email, @profesor)";
+                    MySqlCommand cmd = new MySqlCommand(komanda, conn);
+
+
+                    cmd.Parameters.AddWithValue("@ime", textBox1.Text);
+                    cmd.Parameters.AddWithValue("@prezime", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@klas", textBox3.Text);
+                    cmd.Parameters.AddWithValue("@broj", textBox4.Text);
+                    cmd.Parameters.AddWithValue("@email", textBox5.Text);
+                    cmd.Parameters.AddWithValue("@profesor", prof);
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+                        MessageBox.Show("Успешен внес за: "+textBox1.Text+" "+textBox2.Text);
+                    selectUcenik();
+
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    textBox5.Text = "";
+                    textBox6.Text = "";
                 }
-                String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-                MySqlConnection conn = new MySqlConnection(konekcija);
-
-                conn.Open();
-
-                String komanda = "insert into ucenik (ime, prezime, klas, broj, email, profesor) values (@ime, @prezime, @klas, @broj, @email, @profesor)";
-                MySqlCommand cmd = new MySqlCommand(komanda, conn);
-
-
-                cmd.Parameters.AddWithValue("@ime", textBox1.Text);
-                cmd.Parameters.AddWithValue("@prezime", textBox2.Text);
-                cmd.Parameters.AddWithValue("@klas", textBox3.Text);
-                cmd.Parameters.AddWithValue("@broj", textBox4.Text);
-                cmd.Parameters.AddWithValue("@email", textBox5.Text);
-                cmd.Parameters.AddWithValue("@profesor", prof);
-
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
-                    MessageBox.Show("Успешен внес за: "+textBox1.Text+" "+textBox2.Text);
-                selectUcenik();
-
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                textBox5.Text = "";
-                textBox6.Text = "";
+                catch (MySqlException err)
+                {
+                    MessageBox.Show(err.Message);
+                    log.Error("Nema konekcija do baza"+err.Message);
+                }
             }
-            catch (MySqlException err)
+            else
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Неправилно внесени податоци!");
+                log.Info("Nepravilno vneseni podatoci za Ucenik/Profesor");
             }
         }
-
-        // metod koj go polni data grido kaj ucenik-profesor
-        public void selectUcenik()
-        {
-            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-            MySqlConnection conn = new MySqlConnection(konekcija);
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand cmd;
-            DataSet ds = new DataSet();
-            BindingSource bs = new BindingSource();
-
-            String query = "select ime, prezime, klas, broj, email from ucenik where profesor=0";
-            cmd = new MySqlCommand(query, conn);
-
-            adapter.SelectCommand = cmd;
-            adapter.Fill(ds);
-
-            bs.DataSource = ds.Tables[0];
-            dataGridView1.DataSource = bs;
-        }
-
-        // metod koj go polni data grido kaj ucenik-profesor
-        public void selectKniga()
-        {
-            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-            MySqlConnection conn = new MySqlConnection(konekcija);
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand cmd;
-            DataSet ds = new DataSet();
-            BindingSource bs = new BindingSource();
-
-            String query = "select naslov, pisatel from kniga";
-            cmd = new MySqlCommand(query, conn);
-
-            adapter.SelectCommand = cmd;
-            adapter.Fill(ds);
-
-            bs.DataSource = ds.Tables[0];
-            dataGridView2.DataSource = bs;
-        }
-
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-            MySqlConnection conn = new MySqlConnection(konekcija);
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand cmd;
-            DataSet ds = new DataSet();
-            BindingSource bs = new BindingSource();
-
-            String query = "select ime, prezime, klas, broj, email from ucenik where prezime like '%" + textBox6.Text + "%'";
-            cmd = new MySqlCommand(query, conn);
-
-            adapter.SelectCommand = cmd;
-            adapter.Fill(ds);
-
-            bs.DataSource = ds.Tables[0];
-            dataGridView1.DataSource = bs;
-        }
-
-        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
-        {
-            textBox7.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try { 
-                String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-                MySqlConnection conn = new MySqlConnection(konekcija);
-
-                conn.Open();
-
-                String komanda = "delete from ucenik where email='"+textBox7.Text+"'";
-                MySqlCommand cmd = new MySqlCommand(komanda, conn);
-
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                MessageBox.Show("Успешно бришење!");
-                selectUcenik();
-            }
-            catch (MySqlException err)
-            {
-                MessageBox.Show(err.Message.ToString());
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void vnesiKnigaBtn(object sender, EventArgs e)
         {
             try
             {
@@ -193,33 +115,30 @@ namespace BibliotekaSi
             }
         }
 
-        private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
+        //brisenje na podatoci od baza (ucenik/kniga)
+        private void brisiUcenikBtn(object sender, EventArgs e)
         {
+            try
+            {
+                String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+                MySqlConnection conn = new MySqlConnection(konekcija);
 
-            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-            MySqlConnection conn = new MySqlConnection(konekcija);
+                conn.Open();
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand cmd;
-            DataSet ds = new DataSet();
-            BindingSource bs = new BindingSource();
+                String komanda = "delete from ucenik where email='" + textBox7.Text + "'";
+                MySqlCommand cmd = new MySqlCommand(komanda, conn);
 
-            String query = "select naslov, pisatel from kniga where naslov like '%" + textBox8.Text + "%'";
-            cmd = new MySqlCommand(query, conn);
-
-            adapter.SelectCommand = cmd;
-            adapter.Fill(ds);
-
-            bs.DataSource = ds.Tables[0];
-            dataGridView2.DataSource = bs;
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Успешно бришење!");
+                selectUcenik();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show(err.Message.ToString());
+            }
         }
-
-        private void dataGridView2_MouseClick(object sender, MouseEventArgs e)
-        {
-            textBox11.Text = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void brisiKnigaBtn(object sender, EventArgs e)
         {
             try
             {
@@ -241,5 +160,99 @@ namespace BibliotekaSi
                 MessageBox.Show(err.Message.ToString());
             }
         }
+
+        // metod koj go polni data grido kaj ucenik/kniga
+        public void selectUcenik()
+        {
+            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+            MySqlConnection conn = new MySqlConnection(konekcija);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd;
+            DataSet ds = new DataSet();
+            BindingSource bs = new BindingSource();
+
+            String query = "select ime, prezime, klas, broj, email from ucenik where profesor=0";
+            cmd = new MySqlCommand(query, conn);
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(ds);
+
+            bs.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = bs;
+        }
+        public void selectKniga()
+        {
+            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+            MySqlConnection conn = new MySqlConnection(konekcija);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd;
+            DataSet ds = new DataSet();
+            BindingSource bs = new BindingSource();
+
+            String query = "select naslov, pisatel from kniga";
+            cmd = new MySqlCommand(query, conn);
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(ds);
+
+            bs.DataSource = ds.Tables[0];
+            dataGridView2.DataSource = bs;
+        }
+
+        //searchbar za ucenik/kniga
+        private void prebaruvanjeUcenikBox(object sender, KeyPressEventArgs e)
+        {
+            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+            MySqlConnection conn = new MySqlConnection(konekcija);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd;
+            DataSet ds = new DataSet();
+            BindingSource bs = new BindingSource();
+
+            String query = "select ime, prezime, klas, broj, email from ucenik where prezime like '%" + textBox6.Text + "%'";
+            cmd = new MySqlCommand(query, conn);
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(ds);
+
+            bs.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = bs;
+        }
+        private void prebaruvanjeKnigaBox(object sender, KeyPressEventArgs e)
+        {
+
+            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+            MySqlConnection conn = new MySqlConnection(konekcija);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd;
+            DataSet ds = new DataSet();
+            BindingSource bs = new BindingSource();
+
+            String query = "select naslov, pisatel from kniga where naslov like '%" + textBox8.Text + "%'";
+            cmd = new MySqlCommand(query, conn);
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(ds);
+
+            bs.DataSource = ds.Tables[0];
+            dataGridView2.DataSource = bs;
+        }
+
+        //na mousclikc vo tabela se selektira red
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox7.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
+        }
+        private void dataGridView2_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox11.Text = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
+        
+
     }
 }

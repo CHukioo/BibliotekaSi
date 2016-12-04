@@ -11,16 +11,24 @@ namespace BibliotekaSi
     class UnitTest
     {
         [TestCase]
-        public void Add()
+        public void SoberiTest()
         {
             PrvTest test = new PrvTest();
             Assert.AreEqual(31, test.Soberi(20, 11));
         }
 
         [TestCase]
-        public void ajdavidam()
+        public void VnesUcenikProverkaTest1()
         {
-            Form1 kur = new Form1();
+            PrvTest test = new PrvTest();
+            Assert.AreEqual(false, test.VnesUcenikProverka("Ime", "Prezime", "", "", "ime@prezime", "0"));
+        }
+
+        [TestCase]
+        public void VnesUcenikProverkaTest2()
+        {
+            PrvTest test = new PrvTest();
+            Assert.AreEqual(true, test.VnesUcenikProverka("Ime", "Prezime", "99", "99", "ime@prezime", "0"));
         }
     }
 }
