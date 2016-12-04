@@ -29,6 +29,8 @@ namespace BibliotekaSi
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Logger log = LogManager.GetCurrentClassLogger();
+            log.Error("uspesno kliknato kopce");
 
             try {
                 String prof = "0";
@@ -92,6 +94,7 @@ namespace BibliotekaSi
             dataGridView1.DataSource = bs;
         }
 
+        // metod koj go polni data grido kaj ucenik-profesor
         public void selectKniga()
         {
             String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
