@@ -95,15 +95,25 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.ime3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezime3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ucenikid3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kniga3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pecatbr3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -358,6 +368,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button6);
+            this.tabPage4.Controls.Add(this.textBox18);
+            this.tabPage4.Controls.Add(this.dataGridView5);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -747,6 +760,77 @@
             this.tabPage3.Text = "ИЗВЕШТАЈ";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ime3,
+            this.prezime3,
+            this.ucenikid3,
+            this.kniga3,
+            this.pecatbr3});
+            this.dataGridView5.Location = new System.Drawing.Point(216, 84);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView5.Size = new System.Drawing.Size(543, 240);
+            this.dataGridView5.TabIndex = 0;
+            this.dataGridView5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView5_MouseClick);
+            // 
+            // ime3
+            // 
+            this.ime3.DataPropertyName = "ime";
+            this.ime3.HeaderText = "Име";
+            this.ime3.Name = "ime3";
+            this.ime3.ReadOnly = true;
+            // 
+            // prezime3
+            // 
+            this.prezime3.DataPropertyName = "prezime";
+            this.prezime3.HeaderText = "Презиме";
+            this.prezime3.Name = "prezime3";
+            this.prezime3.ReadOnly = true;
+            // 
+            // ucenikid3
+            // 
+            this.ucenikid3.DataPropertyName = "ucenik_id";
+            this.ucenikid3.HeaderText = "Ученик ИД";
+            this.ucenikid3.Name = "ucenikid3";
+            this.ucenikid3.ReadOnly = true;
+            // 
+            // kniga3
+            // 
+            this.kniga3.DataPropertyName = "naslov";
+            this.kniga3.HeaderText = "Книга";
+            this.kniga3.Name = "kniga3";
+            this.kniga3.ReadOnly = true;
+            // 
+            // pecatbr3
+            // 
+            this.pecatbr3.DataPropertyName = "pecat_br";
+            this.pecatbr3.HeaderText = "Бр на Печат";
+            this.pecatbr3.Name = "pecatbr3";
+            this.pecatbr3.ReadOnly = true;
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(392, 371);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(100, 20);
+            this.textBox18.TabIndex = 1;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(498, 371);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "ВРАТИ";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.knigaVratiBtn);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -761,6 +845,8 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -768,6 +854,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -841,6 +928,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn knigaid1;
         private System.Windows.Forms.DataGridViewTextBoxColumn naslov1;
         private System.Windows.Forms.DataGridViewTextBoxColumn pisatel1;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ime3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prezime3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ucenikid3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kniga3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pecatbr3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBox18;
     }
 }
 

@@ -18,6 +18,8 @@ namespace BibliotekaSi
         {
             selectUcenik();
             selectKniga();
+            selectIzdadeni();
+
             datum();
             Logger log = LogManager.GetCurrentClassLogger();
             log.Info("Programata startuvana");
@@ -206,6 +208,25 @@ namespace BibliotekaSi
             dataGridView2.DataSource = bs;
             dataGridView4.DataSource = bs;
         }
+        public void selectIzdadeni()
+        {
+            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+            MySqlConnection conn = new MySqlConnection(konekcija);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd;
+            DataSet ds = new DataSet();
+            BindingSource bs = new BindingSource();
+
+            String query = "SELECT izdadeni.pecat_br, kniga.naslov, ucenik.ime, ucenik.prezime, ucenik.ucenik_id FROM izdadeni Left Join kniga ON izdadeni.kniga_id = kniga.kniga_id Left Join ucenik ON ucenik.ucenik_id = izdadeni.ucenik_id; ";
+            cmd = new MySqlCommand(query, conn);
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(ds);
+
+            bs.DataSource = ds.Tables[0];
+            dataGridView5.DataSource = bs;
+        }
 
         //searchbar za vnes na ucenik/kniga 
         private void prebaruvanjeUcenikBox(object sender, KeyPressEventArgs e)
@@ -309,6 +330,12 @@ namespace BibliotekaSi
             textBox15.Text = dataGridView4.SelectedRows[0].Cells[0].Value.ToString();
         }
 
+        //na mousclikc vo tabela se selektira red (izdaj)
+        private void dataGridView5_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox18.Text = dataGridView5.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
         //denesen datum pogoden za sql
         private void datum()
         {
@@ -344,8 +371,8 @@ namespace BibliotekaSi
                     MySqlCommand cmd = new MySqlCommand(komanda, conn);
 
 
-                    cmd.Parameters.AddWithValue("@kniga_id", textBox14.Text);
-                    cmd.Parameters.AddWithValue("@ucenik_id", textBox15.Text);
+                    cmd.Parameters.AddWithValue("@ucenik_id", textBox14.Text);
+                    cmd.Parameters.AddWithValue("@kniga_id", textBox15.Text);
                     cmd.Parameters.AddWithValue("@datum", textBox16.Text);
                     cmd.Parameters.AddWithValue("@pecat_br", textBox17.Text);
 
@@ -369,6 +396,31 @@ namespace BibliotekaSi
             {
                 MessageBox.Show("Неправилно внесени податоци!");
                 log.Info("Nepravilno vneseni podatoci za Ucenik/Profesor");
+            }
+        }
+
+
+        //kopce za vrakanje na kniga
+        private void knigaVratiBtn(object sender, EventArgs e)
+        {
+            try
+            {
+                String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+                MySqlConnection conn = new MySqlConnection(konekcija);
+
+                conn.Open();
+
+                String komanda = "delete from izdadeni where pecat_br='" + textBox18.Text + "'";
+                MySqlCommand cmd = new MySqlCommand(komanda, conn);
+
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Успешно враќање!");
+                selectIzdadeni();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show(err.Message.ToString());
             }
         }
     }

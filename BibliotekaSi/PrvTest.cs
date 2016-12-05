@@ -50,5 +50,18 @@ namespace BibliotekaSi
                 return false;
             }
         }
+
+        public bool VratiProverka(string pecatBr)
+        {
+
+            if (pecatBr != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
