@@ -38,5 +38,17 @@ namespace BibliotekaSi
             }
         }
 
+        public bool IzdadiProverka(string ucenik, string kniga, string datum, string pecat)
+        {
+
+            if (ucenik != "" && kniga != "" && datum != "" && pecat != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

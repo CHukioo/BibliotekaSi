@@ -30,6 +30,30 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.knigaid1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.naslov1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pisatel1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.ime1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezime1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.klas1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.redenbr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.redbr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -40,6 +64,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.nsalov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pisatel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kniga_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -57,6 +82,7 @@
             this.klas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.broj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ucenik_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,6 +96,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -91,6 +120,21 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.textBox17);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.button5);
+            this.tabPage1.Controls.Add(this.textBox16);
+            this.tabPage1.Controls.Add(this.textBox15);
+            this.tabPage1.Controls.Add(this.textBox14);
+            this.tabPage1.Controls.Add(this.dataGridView4);
+            this.tabPage1.Controls.Add(this.dataGridView3);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.textBox13);
+            this.tabPage1.Controls.Add(this.textBox12);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -98,6 +142,219 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ИЗДАДИ";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(604, 436);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(74, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Број на печат";
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(607, 462);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(100, 20);
+            this.textBox17.TabIndex = 13;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(498, 436);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(40, 13);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "Датум";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(392, 436);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Книга";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(286, 436);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Ученик";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(452, 505);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 23);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "ИЗДАДИ";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.izdadiKnigaBtn);
+            // 
+            // textBox16
+            // 
+            this.textBox16.Enabled = false;
+            this.textBox16.Location = new System.Drawing.Point(501, 462);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(100, 20);
+            this.textBox16.TabIndex = 8;
+            // 
+            // textBox15
+            // 
+            this.textBox15.Enabled = false;
+            this.textBox15.Location = new System.Drawing.Point(395, 462);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(100, 20);
+            this.textBox15.TabIndex = 7;
+            // 
+            // textBox14
+            // 
+            this.textBox14.Enabled = false;
+            this.textBox14.Location = new System.Drawing.Point(289, 462);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(100, 20);
+            this.textBox14.TabIndex = 6;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.knigaid1,
+            this.naslov1,
+            this.pisatel1});
+            this.dataGridView4.Location = new System.Drawing.Point(691, 107);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView4.Size = new System.Drawing.Size(243, 288);
+            this.dataGridView4.TabIndex = 5;
+            this.dataGridView4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView4_MouseClick);
+            // 
+            // knigaid1
+            // 
+            this.knigaid1.DataPropertyName = "kniga_id";
+            this.knigaid1.HeaderText = "Книга ИД";
+            this.knigaid1.Name = "knigaid1";
+            this.knigaid1.ReadOnly = true;
+            this.knigaid1.Visible = false;
+            // 
+            // naslov1
+            // 
+            this.naslov1.DataPropertyName = "naslov";
+            this.naslov1.HeaderText = "Наслов";
+            this.naslov1.Name = "naslov1";
+            this.naslov1.ReadOnly = true;
+            // 
+            // pisatel1
+            // 
+            this.pisatel1.DataPropertyName = "pisatel";
+            this.pisatel1.HeaderText = "Писател";
+            this.pisatel1.Name = "pisatel1";
+            this.pisatel1.ReadOnly = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ime1,
+            this.prezime1,
+            this.klas1,
+            this.redenbr1,
+            this.email1,
+            this.redbr1});
+            this.dataGridView3.Location = new System.Drawing.Point(55, 107);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(543, 288);
+            this.dataGridView3.TabIndex = 4;
+            this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
+            // 
+            // ime1
+            // 
+            this.ime1.DataPropertyName = "ime";
+            this.ime1.HeaderText = "Име";
+            this.ime1.Name = "ime1";
+            this.ime1.ReadOnly = true;
+            // 
+            // prezime1
+            // 
+            this.prezime1.DataPropertyName = "prezime";
+            this.prezime1.HeaderText = "Презиме";
+            this.prezime1.Name = "prezime1";
+            this.prezime1.ReadOnly = true;
+            // 
+            // klas1
+            // 
+            this.klas1.DataPropertyName = "klas";
+            this.klas1.HeaderText = "Клас";
+            this.klas1.Name = "klas1";
+            this.klas1.ReadOnly = true;
+            // 
+            // redenbr1
+            // 
+            this.redenbr1.DataPropertyName = "broj";
+            this.redenbr1.HeaderText = "Реден Бр.";
+            this.redenbr1.Name = "redenbr1";
+            this.redenbr1.ReadOnly = true;
+            // 
+            // email1
+            // 
+            this.email1.DataPropertyName = "email";
+            this.email1.HeaderText = "Емаил";
+            this.email1.Name = "email1";
+            this.email1.ReadOnly = true;
+            // 
+            // redbr1
+            // 
+            this.redbr1.DataPropertyName = "ucenik_id";
+            this.redbr1.HeaderText = "Ученик ИД";
+            this.redbr1.Name = "redbr1";
+            this.redbr1.ReadOnly = true;
+            this.redbr1.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(688, 52);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(107, 13);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Пребарај по наслов";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(56, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Пребарај по презиме:";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(801, 48);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(179, 20);
+            this.textBox13.TabIndex = 1;
+            this.textBox13.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.prebaruvanjeKnigaBoxIzdaj);
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(180, 45);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(179, 20);
+            this.textBox12.TabIndex = 0;
+            this.textBox12.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.prebaruvanjeUcenikBoxIzdaj);
             // 
             // tabPage4
             // 
@@ -182,7 +439,8 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nsalov,
-            this.pisatel});
+            this.pisatel,
+            this.kniga_id});
             this.dataGridView2.Location = new System.Drawing.Point(110, 303);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
@@ -204,6 +462,14 @@
             this.pisatel.HeaderText = "Писател";
             this.pisatel.Name = "pisatel";
             this.pisatel.ReadOnly = true;
+            // 
+            // kniga_id
+            // 
+            this.kniga_id.DataPropertyName = "kniga_id";
+            this.kniga_id.HeaderText = "Книга ИД";
+            this.kniga_id.Name = "kniga_id";
+            this.kniga_id.ReadOnly = true;
+            this.kniga_id.Visible = false;
             // 
             // button3
             // 
@@ -328,7 +594,8 @@
             this.prezime,
             this.klas,
             this.broj,
-            this.email});
+            this.email,
+            this.ucenik_id});
             this.dataGridView1.Location = new System.Drawing.Point(4, 303);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -371,6 +638,14 @@
             this.email.HeaderText = "Емаил";
             this.email.Name = "email";
             this.email.ReadOnly = true;
+            // 
+            // ucenik_id
+            // 
+            this.ucenik_id.DataPropertyName = "ucenik_id";
+            this.ucenik_id.HeaderText = "Уленик ИД";
+            this.ucenik_id.Name = "ucenik_id";
+            this.ucenik_id.ReadOnly = true;
+            this.ucenik_id.Visible = false;
             // 
             // button1
             // 
@@ -482,6 +757,10 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -512,11 +791,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prezime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn klas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn broj;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox6;
@@ -529,13 +803,44 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nsalov;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pisatel;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prezime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn klas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn broj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ucenik_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nsalov;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pisatel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kniga_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ime1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prezime1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn klas1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn redenbr1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn redbr1;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn knigaid1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn naslov1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pisatel1;
     }
 }
 
