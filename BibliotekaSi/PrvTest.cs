@@ -13,10 +13,10 @@ namespace BibliotekaSi
             return a + b;
         }
 
-        public bool VnesUcenikProverka(string ime, string prezime, string klas, string br, string email, string profesor)
+        public bool VnesUcenikProverka(string ime, string prezime, string klas, string br, string email, string profesor, string telefon)
         {
             if (profesor == "0") { 
-                if (ime != "" && prezime!="" && klas != "" && br != "" && email != "" && profesor != "")
+                if (ime != "" && prezime!="" && klas != "" && br != "" && email != "" && profesor != "" && telefon !="")
                 {
                     return true;
                 }

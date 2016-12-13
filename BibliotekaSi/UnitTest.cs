@@ -21,14 +21,14 @@ namespace BibliotekaSi
         public void VnesUcenikProverkaTest1()
         {
             PrvTest test = new PrvTest();
-            Assert.AreEqual(false, test.VnesUcenikProverka("Ime", "Prezime", "", "", "ime@prezime", "0"));
+            Assert.AreEqual(false, test.VnesUcenikProverka("Ime", "Prezime", "", "", "ime@prezime", "0", ""));
         }
 
         [TestCase]
         public void VnesUcenikProverkaTest2()
         {
             PrvTest test = new PrvTest();
-            Assert.AreEqual(true, test.VnesUcenikProverka("Ime", "Prezime", "99", "99", "ime@prezime", "0"));
+            Assert.AreEqual(true, test.VnesUcenikProverka("Ime", "Prezime", "99", "99", "ime@prezime", "0", "075123456"));
         }
 
         [TestCase]
