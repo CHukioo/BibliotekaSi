@@ -5,6 +5,9 @@ using System.Data;
 using NLog;
 using System.Net.Mail;
 using System.Net;
+using PagedList;
+using System.Drawing;
+using DGVPrinterHelper;
 
 namespace BibliotekaSi
 {
@@ -23,7 +26,7 @@ namespace BibliotekaSi
             selectIzdadeni();
 
             datum();
-            Logger log = LogManager.GetCurrentClassLogger();
+            Logger log = NLog.LogManager.GetCurrentClassLogger();
             log.Info("Programata startuvana");
 
         }
@@ -31,7 +34,7 @@ namespace BibliotekaSi
         //vnes na podatoci vo baza(ucenik/kniga)
         private void vnesiUcenikBtn(object sender, EventArgs e)
         {
-            Logger log = LogManager.GetCurrentClassLogger();
+            Logger log = NLog.LogManager.GetCurrentClassLogger();
             //definiram vrednosti sto ce vleza vo metod VnesUcenikProverka vo PrvTest
             String prof = "0";
             String ime = textBox1.Text;
@@ -354,7 +357,7 @@ namespace BibliotekaSi
         //izdavanje na kniga
         private void izdadiKnigaBtn(object sender, EventArgs e)
         {
-            Logger log = LogManager.GetCurrentClassLogger();
+            Logger log = NLog.LogManager.GetCurrentClassLogger();
 
             //definiram vrednosti sto ce vleza vo metod IzdadiProverka vo PrvTest
             String ucenik = textBox14.Text;
@@ -608,7 +611,6 @@ namespace BibliotekaSi
             }
         }
 
-
         //menuvanje na skolska godina
         private void smeniSkolskaGodina(object sender, EventArgs e)
         {
@@ -636,6 +638,40 @@ namespace BibliotekaSi
             }
         }
 
+        //pecatenje na nevrateni knigi
+        private void prikaziPecatenjeBtn(object sender, EventArgs e)
+        {
+            String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+            MySqlConnection conn = new MySqlConnection(konekcija);
 
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd;
+            DataSet ds = new DataSet();
+            BindingSource bs = new BindingSource();
+
+            String query = "SELECT ucenik.ime, ucenik.prezime, kniga.naslov, izdadeni.pecat_br FROM izdadeni Left Join kniga ON izdadeni.kniga_id = kniga.kniga_id Left Join ucenik ON ucenik.ucenik_id = izdadeni.ucenik_id WHERE datum between '" + dateTimePicker1.Text.ToString()+"' and '"+dateTimePicker2.Text.ToString()+"'; ";
+            cmd = new MySqlCommand(query, conn);
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(ds);
+
+            bs.DataSource = ds.Tables[0];
+            dataGridView6.DataSource = bs;
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "КНИГИ ЗА ВРАЌАЊЕ";
+            printer.SubTitle = "Ве молам известете ги вашите ученици. " + DateTime.Now.ToString("yyyy-MM-dd"); ;
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Сузана Т. Чурлиноска";
+            printer.FooterSpacing = 15;
+            printer.PrintDataGridView(dataGridView6);
+        }
     }
 }

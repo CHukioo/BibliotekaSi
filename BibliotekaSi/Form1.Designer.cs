@@ -108,6 +108,10 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button11 = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.ime4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezime4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.naslov4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pecat_br4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button10 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -901,14 +905,51 @@
             this.button11.TabIndex = 7;
             this.button11.Text = "ПЕЧАТИ";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // dataGridView6
             // 
+            this.dataGridView6.AllowUserToAddRows = false;
+            this.dataGridView6.AllowUserToDeleteRows = false;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(37, 65);
+            this.dataGridView6.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ime4,
+            this.prezime4,
+            this.naslov4,
+            this.pecat_br4});
+            this.dataGridView6.Location = new System.Drawing.Point(30, 65);
             this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.Size = new System.Drawing.Size(423, 420);
+            this.dataGridView6.ReadOnly = true;
+            this.dataGridView6.Size = new System.Drawing.Size(443, 420);
             this.dataGridView6.TabIndex = 6;
+            // 
+            // ime4
+            // 
+            this.ime4.DataPropertyName = "ime";
+            this.ime4.HeaderText = "Име";
+            this.ime4.Name = "ime4";
+            this.ime4.ReadOnly = true;
+            // 
+            // prezime4
+            // 
+            this.prezime4.DataPropertyName = "prezime";
+            this.prezime4.HeaderText = "Презиме";
+            this.prezime4.Name = "prezime4";
+            this.prezime4.ReadOnly = true;
+            // 
+            // naslov4
+            // 
+            this.naslov4.DataPropertyName = "naslov";
+            this.naslov4.HeaderText = "Наслов";
+            this.naslov4.Name = "naslov4";
+            this.naslov4.ReadOnly = true;
+            // 
+            // pecat_br4
+            // 
+            this.pecat_br4.DataPropertyName = "pecat_br";
+            this.pecat_br4.HeaderText = "Печат Бр";
+            this.pecat_br4.Name = "pecat_br4";
+            this.pecat_br4.ReadOnly = true;
             // 
             // button10
             // 
@@ -918,6 +959,7 @@
             this.button10.TabIndex = 5;
             this.button10.Text = "ПРИКАЖИ";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.prikaziPecatenjeBtn);
             // 
             // label21
             // 
@@ -1181,6 +1223,10 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.DataGridView dataGridView6;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ime4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prezime4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn naslov4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pecat_br4;
     }
 }
 
