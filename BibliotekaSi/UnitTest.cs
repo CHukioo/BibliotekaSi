@@ -99,7 +99,7 @@ namespace BibliotekaSi
             {
                 reader.Read();
 
-                NUnit.Framework.Assert.AreEqual("12", reader.GetString("ucenik_id"), "Inserted and read string should match");
+                NUnit.Framework.Assert.AreEqual("10", reader.GetString("ucenik_id"), "Inserted and read string should match");
             }
 
             //Shutdown server
