@@ -88,7 +88,7 @@ namespace BibliotekaSi
             MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(), string.Format("CREATE DATABASE {0};USE {0};", _testDatabaseName));
 
             //Create a table
-            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "CREATE TABLE `kniga` ( `kniga_id` int(11) NOT NULL AUTO_INCREMENT, `naslov` varchar(255) NOT NULL, `pisatel` varchar(255) NOT NULL, PRIMARY KEY(`kniga_id`) ENGINE =MEMORY; ");
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "CREATE TABLE `kniga` (`kniga_id` int(11) NOT NULL AUTO_INCREMENT, `naslov` varchar(255) NOT NULL, `pisatel` varchar(255) NOT NULL, PRIMARY KEY(`kniga_id`) ENGINE =MEMORY; ");
 
             //Insert data (large chunks of data can of course be loaded from a file)
             MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `kniga` VALUES ('2', 'Zoki Poki', 'Olivera Nikolova');");
