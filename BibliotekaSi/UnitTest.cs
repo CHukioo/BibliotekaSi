@@ -77,15 +77,7 @@ namespace BibliotekaSi
         }
 
         [TestCase]
-        public void VratiProverkaTest3()
-        {
-            PrvTest test = new PrvTest();
-            NUnit.Framework.Assert.AreEqual(false, test.VratiProverka(""));
-        }
-
-
-        [TestCase]
-        public void ConnectinTest()
+        public void BazaKonekcijaVnesIznesPodatociIzdadeni()
         {
             //Setting up and starting the server
             //This can also be done in a AssemblyInitialize method to speed up tests
@@ -114,7 +106,67 @@ namespace BibliotekaSi
             dbServer.ShutDown();
         }
 
-       
+        [TestCase]
+        public void BazaKonekcijaVnesIznesPodatociUcenik()
+        {
+            //Setting up and starting the server
+            //This can also be done in a AssemblyInitialize method to speed up tests
+            MySqlServer dbServer = MySqlServer.Instance;
+            dbServer.StartServer();
+
+            //Create a database and select it
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(), string.Format("CREATE DATABASE {0};USE {0};", _testDatabaseName));
+
+            //Create a table
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "CREATE TABLE `ucenik` ( `ucenik_id` int(11) NOT NULL AUTO_INCREMENT, `ime` varchar(255) NOT NULL, `prezime` varchar(255) NOT NULL, `klas` int(11) DEFAULT NULL, `broj` int(11) DEFAULT NULL, `email` varchar(255) NOT NULL, `profesor` int(11) NOT NULL, `telefon` varchar(9) NOT NULL, PRIMARY KEY(`ucenik_id`)) ENGINE=MEMORY; ");
+
+            //Insert data (large chunks of data can of course be loaded from a file)
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `ucenik` VALUES ('14', 'Ilija', 'Jolevski', '0', '0', 'ilija@gmail.com', '1', '123456789');");
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `ucenik` VALUES ('10', 'Andrej', 'Gagaleski', '41', '23', 'markocurlinoski.uie@gmail.com', '0', '123456789');");
+
+            //Load data
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(dbServer.GetConnectionString(_testDatabaseName), "select * from ucenik WHERE email = 'markocurlinoski.uie@gmail.com'"))
+            {
+                reader.Read();
+
+                NUnit.Framework.Assert.AreEqual("123456789", reader.GetString("telefon"), "Inserted and read string should match");
+            }
+
+            //Shutdown server
+            dbServer.ShutDown();
+        }
+
+        [TestCase]
+        public void BazaKonekcijaVnesIznesPodatociKniga()
+        {
+            //Setting up and starting the server
+            //This can also be done in a AssemblyInitialize method to speed up tests
+            MySqlServer dbServer = MySqlServer.Instance;
+            dbServer.StartServer();
+
+            //Create a database and select it
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(), string.Format("CREATE DATABASE {0};USE {0};", _testDatabaseName));
+
+            //Create a table
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "CREATE TABLE `kniga` ( `kniga_id` int(11) NOT NULL AUTO_INCREMENT, `naslov` varchar(255) NOT NULL, `pisatel` varchar(255) NOT NULL, PRIMARY KEY(`kniga_id`) ENGINE =MEMORY; ");
+
+            //Insert data (large chunks of data can of course be loaded from a file)
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `kniga` VALUES ('2', 'Zoki Poki', 'Olivera Nikolova');");
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `kniga` VALUES ('3', 'Vojna i mir', 'Nz Pisatel');");
+
+            //Load data
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(dbServer.GetConnectionString(_testDatabaseName), "select * from kniga WHERE naslov = 'Zoki Poki'"))
+            {
+                reader.Read();
+
+                NUnit.Framework.Assert.AreEqual("Olivera Nikolova", reader.GetString("pisatel"), "Inserted and read string should match");
+            }
+
+            //Shutdown server
+            dbServer.ShutDown();
+        }
+
+
 
 
     }
