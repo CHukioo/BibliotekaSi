@@ -18,7 +18,7 @@ namespace BibliotekaSi
     [TestClass]
     class UnitTest
     {
-        private static readonly string _testDatabaseName = "testserver";
+        private static readonly string _testDatabaseName = "biblioteka_si";
 
         [TestCase]
         public void SoberiTest()
@@ -85,7 +85,7 @@ namespace BibliotekaSi
 
 
         [TestCase]
-        public void ExampleTest()
+        public void ConnectinTest()
         {
             //Setting up and starting the server
             //This can also be done in a AssemblyInitialize method to speed up tests
@@ -96,18 +96,18 @@ namespace BibliotekaSi
             MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(), string.Format("CREATE DATABASE {0};USE {0};", _testDatabaseName));
 
             //Create a table
-            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "CREATE TABLE testTable (`id` INT NOT NULL, `value` CHAR(150) NULL,  PRIMARY KEY (`id`)) ENGINE = MEMORY;");
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "CREATE TABLE `izdadeni` (`kniga_id` int(11) NOT NULL,`ucenik_id` int(11) NOT NULL,`datum` date NOT NULL,`pecat_br` varchar(255) NOT NULL,`izvesten` int(1) NOT NULL,PRIMARY KEY (`pecat_br`)) ENGINE=MEMORY;");
 
             //Insert data (large chunks of data can of course be loaded from a file)
-            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO testTable (`id`,`value`) VALUES (1, 'some value')");
-            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO testTable (`id`, `value`) VALUES (2, 'test value')");
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `izdadeni` VALUES ('2', '14', '2016-10-01', '123369', '0');");
+            MySqlHelper.ExecuteNonQuery(dbServer.GetConnectionString(_testDatabaseName), "INSERT INTO `izdadeni` VALUES ('2', '10', '2016-12-15', '125', '0');");
 
             //Load data
-            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(dbServer.GetConnectionString(_testDatabaseName), "select * from testTable WHERE id = 2"))
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(dbServer.GetConnectionString(_testDatabaseName), "select * from izdadeni WHERE pecat_br = '125'"))
             {
                 reader.Read();
 
-                NUnit.Framework.Assert.AreEqual("test value", reader.GetString("value"), "Inserted and read string should match");
+                NUnit.Framework.Assert.AreEqual("10", reader.GetString("ucenik_id"), "Inserted and read string should match");
             }
 
             //Shutdown server
