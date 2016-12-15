@@ -129,7 +129,7 @@ namespace BibliotekaSi
             {
                 reader.Read();
 
-                NUnit.Framework.Assert.AreEqual("123456789", reader.GetString("telefon"), "Inserted and read string should match");
+                NUnit.Framework.Assert.AreEqual("10", reader.GetString("ucenik_id"), "Inserted and read string should match");
             }
 
             //Shutdown server
@@ -159,7 +159,7 @@ namespace BibliotekaSi
             {
                 reader.Read();
 
-                NUnit.Framework.Assert.AreEqual("Olivera Nikolova", reader.GetString("pisatel"), "Inserted and read string should match");
+                NUnit.Framework.Assert.AreEqual("2", reader.GetString("kniga_id"), "Inserted and read string should match");
             }
 
             //Shutdown server
