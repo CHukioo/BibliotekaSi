@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MySql.Data.MySqlClient;
-using System;
 using System.IO;
 using MySql.Server;
 using System.Diagnostics;

@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MySql.Data.MySqlClient;
-using System;
 using System.IO;
 using MySql.Server;
 using System.Diagnostics;
@@ -78,7 +76,15 @@ namespace BibliotekaSi
             NUnit.Framework.Assert.AreEqual(false, test.VratiProverka(""));
         }
 
-        [TestMethod]
+        [TestCase]
+        public void VratiProverkaTest3()
+        {
+            PrvTest test = new PrvTest();
+            NUnit.Framework.Assert.AreEqual(false, test.VratiProverka(""));
+        }
+
+
+        [TestCase]
         public void ExampleTest()
         {
             //Setting up and starting the server
@@ -101,13 +107,14 @@ namespace BibliotekaSi
             {
                 reader.Read();
 
-                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual("test value", reader.GetString("value"), "Inserted and read string should match");
+                NUnit.Framework.Assert.AreEqual("test value", reader.GetString("value"), "Inserted and read string should match");
             }
 
             //Shutdown server
             dbServer.ShutDown();
         }
 
+       
 
 
     }
