@@ -413,46 +413,54 @@ namespace BibliotekaSi
             String pecat = textBox17.Text;
 
             PrvTest klasa = new PrvTest();
-            if (klasa.IzdadiProverka(ucenik, kniga, datum, pecat))
+            if (klasa.DaliUcenikImaKniga(ucenik))
             {
 
-                try
+                if (klasa.IzdadiProverka(ucenik, kniga, datum, pecat))
                 {
 
-                    String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-                    MySqlConnection conn = new MySqlConnection(konekcija);
+                    try
+                    {
 
-                    conn.Open();
+                        String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
+                        MySqlConnection conn = new MySqlConnection(konekcija);
 
-                    String komanda = "insert into izdadeni (kniga_id, ucenik_id, datum, pecat_br, izvesten) values (@kniga_id, @ucenik_id, @datum, @pecat_br, 0)";
-                    MySqlCommand cmd = new MySqlCommand(komanda, conn);
+                        conn.Open();
+
+                        String komanda = "insert into izdadeni (kniga_id, ucenik_id, datum, pecat_br, izvesten) values (@kniga_id, @ucenik_id, @datum, @pecat_br, 0)";
+                        MySqlCommand cmd = new MySqlCommand(komanda, conn);
 
 
-                    cmd.Parameters.AddWithValue("@ucenik_id", textBox14.Text);
-                    cmd.Parameters.AddWithValue("@kniga_id", textBox15.Text);
-                    cmd.Parameters.AddWithValue("@datum", textBox16.Text);
-                    cmd.Parameters.AddWithValue("@pecat_br", textBox17.Text);
+                        cmd.Parameters.AddWithValue("@ucenik_id", textBox14.Text);
+                        cmd.Parameters.AddWithValue("@kniga_id", textBox15.Text);
+                        cmd.Parameters.AddWithValue("@datum", textBox16.Text);
+                        cmd.Parameters.AddWithValue("@pecat_br", textBox17.Text);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
 
-                    conn.Close();
-                    MessageBox.Show("Успешен издадена книга!");
-                    selectUcenik();
+                        conn.Close();
+                        MessageBox.Show("Успешен издадена книга!");
+                        selectUcenik();
 
-                    textBox14.Text = "";
-                    textBox15.Text = "";
-                    textBox17.Text = "";
+                        textBox14.Text = "";
+                        textBox15.Text = "";
+                        textBox17.Text = "";
+                    }
+                    catch (MySqlException err)
+                    {
+                        MessageBox.Show(err.Message);
+                        log.Error("Greska so baza (izdavanje kniga) " + err.Message);
+                    }
                 }
-                catch (MySqlException err)
+                else
                 {
-                    MessageBox.Show(err.Message);
-                    log.Error("Greska so baza (izdavanje kniga) " + err.Message);
+                    MessageBox.Show("Неправилно внесени податоци!");
+                    log.Info("Nepravilno vneseni podatoci za Ucenik/Profesor");
                 }
             }
             else
             {
-                MessageBox.Show("Неправилно внесени податоци!");
-                log.Info("Nepravilno vneseni podatoci za Ucenik/Profesor");
+                MessageBox.Show("Неможе да се издаде книга");
             }
             selectIzdadeni();
         }
