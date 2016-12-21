@@ -10,7 +10,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using MySql.Server;
 using System.Diagnostics;
-
+using Moq;
+using System.ComponentModel;
 
 namespace BibliotekaSi
 {
@@ -165,11 +166,6 @@ namespace BibliotekaSi
             //Shutdown server
             dbServer.ShutDown();
         }
-
-        
-
-
-
 
     }
 }

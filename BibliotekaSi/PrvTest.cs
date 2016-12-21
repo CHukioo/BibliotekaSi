@@ -72,7 +72,7 @@ namespace BibliotekaSi
 
         public bool DaliUcenikImaKniga(string ucenikId)
         {
-            bool vrati = false;
+            bool vrati = true;
            
                 DataTable tabela = new DataTable();
                 try

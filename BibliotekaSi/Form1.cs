@@ -53,45 +53,28 @@ namespace BibliotekaSi
             if (klasa.VnesUcenikProverka(ime, prezime, klas, broj, email, prof, telefon))
             {
 
-                try
+                string sqlKomanda = "insert into ucenik (ime, prezime, klas, broj, email, profesor, telefon) values ('"+ime+"', '"+prezime+"', "+klas+", "+broj+", '"+email+"', "+prof+", '"+telefon+"');";
+                BazaPod baza = new BazaPod();
+                string uspesno = baza.VnesPodatoci(sqlKomanda);
+
+                if (uspesno == "ok")
                 {
-
-                    String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-                    MySqlConnection conn = new MySqlConnection(konekcija);
-
-                    conn.Open();
-
-                    String komanda = "insert into ucenik (ime, prezime, klas, broj, email, profesor, telefon) values (@ime, @prezime, @klas, @broj, @email, @profesor, @telefon)";
-                    MySqlCommand cmd = new MySqlCommand(komanda, conn);
-
-
-                    cmd.Parameters.AddWithValue("@ime", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@prezime", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@klas", textBox3.Text);
-                    cmd.Parameters.AddWithValue("@broj", textBox4.Text);
-                    cmd.Parameters.AddWithValue("@email", textBox5.Text);
-                    cmd.Parameters.AddWithValue("@profesor", prof);
-                    cmd.Parameters.AddWithValue("@telefon", telefon);
-
-                    cmd.ExecuteNonQuery();
-
-                    conn.Close();
-                    MessageBox.Show("Успешен внес за: " + textBox1.Text + " " + textBox2.Text);
+                    MessageBox.Show("Успешен внес");
                     selectUcenik();
-
                     textBox1.Text = "";
                     textBox2.Text = "";
                     textBox3.Text = "";
                     textBox4.Text = "";
                     textBox5.Text = "";
-                    textBox6.Text = "";
-                    textBox16.Text = "";
+                    textBox19.Text = "";
                 }
-                catch (MySqlException err)
+                else
                 {
-                    MessageBox.Show(err.Message);
-                    log.Error("Greska so baza (vnesi ucenik) " + err.Message);
+                    MessageBox.Show("Неуспешен внес");
+                    log.Error(uspesno);
                 }
+
+                
             }
             else
             {
