@@ -170,19 +170,77 @@ namespace BibliotekaSi
 
         //testoj od mocking
         [TestCase]
-        public void VnesNaPodTest()
+        public void ProverkaKonekcija()
         {
             BazaPodTest db = new BazaPodTest();
             db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
-            NUnit.Framework.Assert.AreEqual(true, db.VnesNaPod("select ba bla"));
+            NUnit.Framework.Assert.AreEqual(true, db.konektirano);
             db.KonekcijaClose();
         }
+
         [TestCase]
-        public void IznesNaPodTest()
+        public void ProverkaDiskonekcija()
         {
             BazaPodTest db = new BazaPodTest();
             db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
-            NUnit.Framework.Assert.AreEqual(1, db.ebago().Rows.Count);
+            db.KonekcijaClose();
+            NUnit.Framework.Assert.AreEqual(false, db.konektirano);
+        }
+
+        [TestCase]
+        public void VnesNaPodUcenikTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            NUnit.Framework.Assert.AreEqual(true, db.VnesNaPodUcenik("Marko", "Curlinoski", 11, 11, "marko@hot.com", 0, "75000000"));
+            db.KonekcijaClose();
+        }
+
+        [TestCase]
+        public void DaliSeTocniPodUcenikTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            db.VnesNaPodUcenik("Proba3", "Proba3", 33, 33, "Proba3", 0, "75333333");
+            NUnit.Framework.Assert.AreEqual("Proba3", db.KveriUcenik("select * from ucneik").Rows[0]["ime"]);
+            db.KonekcijaClose();
+        }
+
+        [TestCase]
+        public void VnesNaPodKnigaTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            NUnit.Framework.Assert.AreEqual(true, db.VnesNaPodKniga("Zoki Poki", "Olivera Nikolova"));
+            db.KonekcijaClose();
+        }
+
+        [TestCase]
+        public void DaliSeTocniPodKnigaTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            db.VnesNaPodKniga("Zoki Poki", "Olivera Nikolova");
+            NUnit.Framework.Assert.AreEqual("Zoki Poki", db.KveriKniga("select * from kniga").Rows[0]["naslov"]);
+            db.KonekcijaClose();
+        }
+
+        [TestCase]
+        public void VnesNaPodIzdadiTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            NUnit.Framework.Assert.AreEqual(true, db.VnesNaPodIzdadeni(111, 111, "A123", "02/02/2016", 0));
+            db.KonekcijaClose();
+        }
+
+        [TestCase]
+        public void DaliSeTocniPodIzdadiTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            db.VnesNaPodIzdadeni(111, 111, "A123", "02/02/2016", 0);
+            NUnit.Framework.Assert.AreEqual("A123", db.KveriIzdeni("select * from izdadeni").Rows[0]["pecatBr"]);
             db.KonekcijaClose();
         }
 
