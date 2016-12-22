@@ -165,30 +165,11 @@ namespace BibliotekaSi
         // metod koj go polni data grido kaj ucenik/kniga
         public void selectUcenik()
         {
-            try { 
-                String konekcija = "server=localhost;Database=biblioteka_si;uid=root;pwd=root;";
-                MySqlConnection conn = new MySqlConnection(konekcija);
-
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                MySqlCommand cmd;
-                DataSet ds = new DataSet();
-                BindingSource bs = new BindingSource();
-
-                String query = "select ucenik_id, ime, prezime, klas, broj, email from ucenik where profesor=0";
-                cmd = new MySqlCommand(query, conn);
-
-                adapter.SelectCommand = cmd;
-                adapter.Fill(ds);
-
-                bs.DataSource = ds.Tables[0];
-                dataGridView1.DataSource = bs;
-                dataGridView3.DataSource = bs;
-            }
-            catch (Exception err)
-            {
-                log.Error("Greska so baza (selektiraj ucenik) " + err.Message);
-            }
-
+            BazaPod bp = new BazaPod();
+            BindingSource bs = new BindingSource();
+            bs.DataSource = bp.Kveri("select ucenik_id, ime, prezime, klas, broj, email from ucenik where profesor = 0").Tables[0];
+            dataGridView1.DataSource = bs;
+            dataGridView3.DataSource = bs;
         }
         public void selectKniga()
         {

@@ -167,5 +167,24 @@ namespace BibliotekaSi
             dbServer.ShutDown();
         }
 
+
+        //testoj od mocking
+        [TestCase]
+        public void VnesNaPodTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            NUnit.Framework.Assert.AreEqual(true, db.VnesNaPod("select ba bla"));
+            db.KonekcijaClose();
+        }
+        [TestCase]
+        public void IznesNaPodTest()
+        {
+            BazaPodTest db = new BazaPodTest();
+            db.KonekcijaOpen("server=localhost;Database=biblioteka_si;uid=root;pwd=root;");
+            NUnit.Framework.Assert.AreEqual(1, db.ebago().Rows.Count);
+            db.KonekcijaClose();
+        }
+
     }
 }
