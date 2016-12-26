@@ -6,7 +6,7 @@ using NLog;
 
 namespace BibliotekaSi
 {
-    class BazaPod
+    class BazaPod : IBazaPod
     {
         private static Logger log = NLog.LogManager.GetCurrentClassLogger();
 

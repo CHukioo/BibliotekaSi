@@ -239,44 +239,71 @@ namespace BibliotekaSi
             db.KonekcijaClose();
         }
 
-        public void UnitTest1()
+
+        //aj pak mocokj
+
+        public UnitTest()
         {
             // create some mock products to play with
-            IList<Ucenik> ucenik = new List<Ucenik>
+            IList<Ucenik> ucenici = new List<Ucenik>
                 {
-                    new Ucenik { UcenikId = 1, Ime = "Marko", Prezime = "Curlinoski", Klas = 11, Broj = 11, Email = "marko@hotmail.com", Profesor = 0, Telefon="75111111" },
-                    new Ucenik { UcenikId = 2, Ime = "Marko", Prezime = "Curlinoski", Klas = 11, Broj = 11, Email = "marko@hotmail.com", Profesor = 0, Telefon="75111111" },
-                    new Ucenik { UcenikId = 3, Ime = "Marko", Prezime = "Curlinoski", Klas = 11, Broj = 11, Email = "marko@hotmail.com", Profesor = 0, Telefon="75111111" },
+                    new Ucenik { UcenikId = 1, Ime = "Test1", Prezime = "Test1", Broj = 11, Klas = 11, Email = "test1@gmail.com", Profesor = 0, Telefon = "75111111" },
+                    new Ucenik { UcenikId = 2, Ime = "Test2", Prezime = "Test2", Broj = 22, Klas = 22, Email = "test2@gmail.com", Profesor = 0, Telefon = "75222222" },
+                    new Ucenik { UcenikId = 3, Ime = "Test3", Prezime = "Test3", Broj = 33, Klas = 33, Email = "test3@gmail.com", Profesor = 0, Telefon = "75333333" }
                 };
 
             // Mock the Products Repository using Moq
             Mock<IUcenikRepository> mockUcenikRepository = new Mock<IUcenikRepository>();
 
             // Return all the products
-            mockUcenikRepository.Setup(mr => mr.FindAll()).Returns(ucenik);
+            mockUcenikRepository.Setup(mr => mr.Site()).Returns(ucenici);
 
             // return a product by Id
-            mockUcenikRepository.Setup(mr => mr.SelektPoId(It.IsAny<int>())).Returns((int i) => ucenik.Where(x => x.UcenikId == i).Single());
+            mockUcenikRepository.Setup(mr => mr.SelektPoId(It.IsAny<int>())).Returns((int i) => ucenici.Where(x => x.UcenikId == i).Single());
 
             // return a product by Name
-            mockUcenikRepository.Setup(mr => mr.SelektPoEmail(It.IsAny<string>())).Returns((string s) => ucenik.Where(x => x.Email == s).Single());
+            mockUcenikRepository.Setup(mr => mr.SelektPoEmail(It.IsAny<string>())).Returns((string s) => ucenici.Where(x => x.Email == s).Single());
+
+            // Allows us to test saving a product
+            mockUcenikRepository.Setup(mr => mr.VnesiUcenik(It.IsAny<Ucenik>())).Returns(
+                (Ucenik target) =>
+                { 
+                        var original = ucenici.Where(q => q.UcenikId == target.UcenikId).Single();
+
+                        if (original == null)
+                        {
+                            return false;
+                        }
+
+                        original.UcenikId = target.UcenikId;
+                        original.Ime = target.Ime;
+                        original.Prezime = target.Prezime;
+                        original.Klas = target.Klas;
+                        original.Broj = target.Broj;
+                        original.Email = target.Email;
+                        original.Profesor = target.Profesor;
+                        original.Telefon = target.Telefon;
+
+
+                    return true;
+                });
 
             // Complete the setup of our Mock Product Repository
-            mockUcenikRepository.VerifyAll();
-           // this.MockUcenikRepository = mockUcenikRepository.Object;
+            this.MockUcenikRepository = mockUcenikRepository.Object;
         }
-        public Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext { get; set; }
+        public NUnit.Framework.TestContext TestContext { get; set; }
         public readonly IUcenikRepository MockUcenikRepository;
 
         [TestCase]
-        public void MockTestAjPominiZitiMajka()
+        public void CanReturnProductById()
         {
             // Try finding a product by id
             Ucenik testUcenik = this.MockUcenikRepository.SelektPoId(2);
 
             NUnit.Framework.Assert.IsNotNull(testUcenik); // Test if null
-            NUnit.Framework.Assert.IsInstanceOf<Ucenik>(testUcenik); // Test type
-            NUnit.Framework.Assert.AreEqual("Marko", testUcenik.Ime); // Verify it is the right product
+            NUnit.Framework.Assert.IsInstanceOf<Ucenik>(testUcenik);
+            //   Type(testProduct, typeof(Product)); // Test type
+            NUnit.Framework.Assert.AreEqual("Test2", testUcenik.Ime); // Verify it is the right product
         }
 
 

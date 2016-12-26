@@ -8,7 +8,7 @@ namespace BibliotekaSi
 {
     interface IUcenikRepository
     {
-        IList<Ucenik> FindAll();
+        IList<Ucenik> Site();
         Ucenik SelektPoId(int ucenikid);
         Ucenik SelektPoEmail(string email);
         bool VnesiUcenik(Ucenik target);
