@@ -3,19 +3,14 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 using MySql.Server;
-using System.Diagnostics;
 using Moq;
-using System.ComponentModel;
 
 namespace BibliotekaSi
 {
-   [TestFixture]
+    [TestFixture]
     [TestClass]
     class UnitTest
     {
@@ -243,6 +238,47 @@ namespace BibliotekaSi
             NUnit.Framework.Assert.AreEqual("A123", db.KveriIzdeni("select * from izdadeni").Rows[0]["pecatBr"]);
             db.KonekcijaClose();
         }
+
+        public void UnitTest1()
+        {
+            // create some mock products to play with
+            IList<Ucenik> ucenik = new List<Ucenik>
+                {
+                    new Ucenik { UcenikId = 1, Ime = "Marko", Prezime = "Curlinoski", Klas = 11, Broj = 11, Email = "marko@hotmail.com", Profesor = 0, Telefon="75111111" },
+                    new Ucenik { UcenikId = 2, Ime = "Marko", Prezime = "Curlinoski", Klas = 11, Broj = 11, Email = "marko@hotmail.com", Profesor = 0, Telefon="75111111" },
+                    new Ucenik { UcenikId = 3, Ime = "Marko", Prezime = "Curlinoski", Klas = 11, Broj = 11, Email = "marko@hotmail.com", Profesor = 0, Telefon="75111111" },
+                };
+
+            // Mock the Products Repository using Moq
+            Mock<IUcenikRepository> mockUcenikRepository = new Mock<IUcenikRepository>();
+
+            // Return all the products
+            mockUcenikRepository.Setup(mr => mr.FindAll()).Returns(ucenik);
+
+            // return a product by Id
+            mockUcenikRepository.Setup(mr => mr.SelektPoId(It.IsAny<int>())).Returns((int i) => ucenik.Where(x => x.UcenikId == i).Single());
+
+            // return a product by Name
+            mockUcenikRepository.Setup(mr => mr.SelektPoEmail(It.IsAny<string>())).Returns((string s) => ucenik.Where(x => x.Email == s).Single());
+
+            // Complete the setup of our Mock Product Repository
+            mockUcenikRepository.VerifyAll();
+           // this.MockUcenikRepository = mockUcenikRepository.Object;
+        }
+        public Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext { get; set; }
+        public readonly IUcenikRepository MockUcenikRepository;
+
+        [TestMethod]
+        public void MockTestAjPominiZitiMajka()
+        {
+            // Try finding a product by id
+            Ucenik testUcenik = this.MockUcenikRepository.SelektPoId(1);
+
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNotNull(testUcenik); // Test if null
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsInstanceOfType(testUcenik, typeof(Ucenik)); // Test type
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual("ASP.Net Unleashed", testUcenik.Ime); // Verify it is the right product
+        }
+
 
     }
 }
