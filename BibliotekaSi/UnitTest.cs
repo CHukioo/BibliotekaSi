@@ -240,7 +240,7 @@ namespace BibliotekaSi
         }
 
 
-        //aj pak mocokj
+        //mockoj za ucenik tabela
         public UnitTest()
         {
             // create some mock products to play with
@@ -267,23 +267,32 @@ namespace BibliotekaSi
             mockUcenikRepository.Setup(mr => mr.VnesiUcenik(It.IsAny<Ucenik>())).Returns(
                 (Ucenik target) =>
                 {
-                    var original = ucenici.Where(q => q.UcenikId == target.UcenikId).Single();
 
-                    if (original == null)
+                    if (target.UcenikId.Equals(default(int)))
                     {
-                        return false;
+                        
+                        target.UcenikId = ucenici.Count() + 1;
+                        ucenici.Add(target);
                     }
+                    else
+                    {
+                        var original = ucenici.Where(q => q.UcenikId == target.UcenikId).Single();
 
-                    original.UcenikId = target.UcenikId;
-                    original.Ime = target.Ime;
-                    original.Prezime = target.Prezime;
-                    original.Klas = target.Klas;
-                    original.Broj = target.Broj;
-                    original.Email = target.Email;
-                    original.Profesor = target.Profesor;
-                    original.Telefon = target.Telefon;
+                        if (original == null)
+                        {
+                            return false;
+                        }
 
+                        original.UcenikId = target.UcenikId;
+                        original.Ime = target.Ime;
+                        original.Prezime = target.Prezime;
+                        original.Klas = target.Klas;
+                        original.Broj = target.Broj;
+                        original.Email = target.Email;
+                        original.Profesor = target.Profesor;
+                        original.Telefon = target.Telefon;
 
+                    }
                     return true;
                 });
 
@@ -305,6 +314,33 @@ namespace BibliotekaSi
             NUnit.Framework.Assert.AreEqual("Test2", testUcenik.Ime); // Verify it is the right product
         }
 
+        [TestCase]
+        public void CanReturnAllProducts()
+        {
+            // Try finding all products
+            IList<Ucenik> testUcenik = this.MockUcenikRepository.Site();
+
+            NUnit.Framework.Assert.IsNotNull(testUcenik); // Test if null
+            NUnit.Framework.Assert.AreEqual(3, testUcenik.Count); // Verify the correct Number
+        }
+
+        [TestCase]
+        public void CanInsertProduct()
+        {
+            // Create a new product, not I do not supply an id
+            Ucenik novUcenik = new Ucenik
+            { Ime = "TestUcenik", Prezime = "TestUcenik", Klas = 11, Broj = 11, Email = "TestUcenik", Profesor = 0, Telefon = "75999999" };
+
+            int ucenikCount = this.MockUcenikRepository.Site().Count;
+            NUnit.Framework.Assert.AreEqual(3, ucenikCount); // Verify the expected Number pre-insert
+
+            // try saving our new product
+            this.MockUcenikRepository.VnesiUcenik(novUcenik);
+
+            // demand a recount
+            ucenikCount = this.MockUcenikRepository.Site().Count;
+            NUnit.Framework.Assert.AreEqual(4, ucenikCount); // Verify the expected Number post-insert
+        }
 
 
     }
