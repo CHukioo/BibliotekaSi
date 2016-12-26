@@ -321,7 +321,7 @@ namespace BibliotekaSi
             IList<Ucenik> testUcenik = this.MockUcenikRepository.Site();
 
             NUnit.Framework.Assert.IsNotNull(testUcenik); // Test if null
-            NUnit.Framework.Assert.AreEqual(3, testUcenik.Count); // Verify the correct Number
+            NUnit.Framework.Assert.AreEqual(4, testUcenik.Count); // Verify the correct Number
         }
 
         [TestCase]
