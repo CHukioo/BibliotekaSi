@@ -241,7 +241,6 @@ namespace BibliotekaSi
 
 
         //aj pak mocokj
-
         public UnitTest()
         {
             // create some mock products to play with
@@ -267,22 +266,22 @@ namespace BibliotekaSi
             // Allows us to test saving a product
             mockUcenikRepository.Setup(mr => mr.VnesiUcenik(It.IsAny<Ucenik>())).Returns(
                 (Ucenik target) =>
-                { 
-                        var original = ucenici.Where(q => q.UcenikId == target.UcenikId).Single();
+                {
+                    var original = ucenici.Where(q => q.UcenikId == target.UcenikId).Single();
 
-                        if (original == null)
-                        {
-                            return false;
-                        }
+                    if (original == null)
+                    {
+                        return false;
+                    }
 
-                        original.UcenikId = target.UcenikId;
-                        original.Ime = target.Ime;
-                        original.Prezime = target.Prezime;
-                        original.Klas = target.Klas;
-                        original.Broj = target.Broj;
-                        original.Email = target.Email;
-                        original.Profesor = target.Profesor;
-                        original.Telefon = target.Telefon;
+                    original.UcenikId = target.UcenikId;
+                    original.Ime = target.Ime;
+                    original.Prezime = target.Prezime;
+                    original.Klas = target.Klas;
+                    original.Broj = target.Broj;
+                    original.Email = target.Email;
+                    original.Profesor = target.Profesor;
+                    original.Telefon = target.Telefon;
 
 
                     return true;
@@ -305,6 +304,7 @@ namespace BibliotekaSi
             //   Type(testProduct, typeof(Product)); // Test type
             NUnit.Framework.Assert.AreEqual("Test2", testUcenik.Ime); // Verify it is the right product
         }
+
 
 
     }

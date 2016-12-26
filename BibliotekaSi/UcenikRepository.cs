@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotekaSi
 {
-    class UcenikRepository : IUcenikRepository
+    public class UcenikRepository : IUcenikRepository
     {
         public IList<Ucenik> Site()
         {

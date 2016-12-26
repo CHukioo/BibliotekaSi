@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotekaSi
 {
-    class Ucenik
+    public class Ucenik
     {
         public int UcenikId { get; set; }
 

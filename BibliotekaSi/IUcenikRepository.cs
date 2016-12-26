@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotekaSi
 {
-    interface IUcenikRepository
+    public interface IUcenikRepository
     {
         IList<Ucenik> Site();
         Ucenik SelektPoId(int ucenikid);
