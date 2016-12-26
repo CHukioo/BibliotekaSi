@@ -268,15 +268,15 @@ namespace BibliotekaSi
         public Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext { get; set; }
         public readonly IUcenikRepository MockUcenikRepository;
 
-        [TestMethod]
+        [TestCase]
         public void MockTestAjPominiZitiMajka()
         {
             // Try finding a product by id
-            Ucenik testUcenik = this.MockUcenikRepository.SelektPoId(1);
+            Ucenik testUcenik = this.MockUcenikRepository.SelektPoId(2);
 
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNotNull(testUcenik); // Test if null
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsInstanceOfType(testUcenik, typeof(Ucenik)); // Test type
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual("ASP.Net Unleashed", testUcenik.Ime); // Verify it is the right product
+            NUnit.Framework.Assert.IsNotNull(testUcenik); // Test if null
+            NUnit.Framework.Assert.IsInstanceOf<Ucenik>(testUcenik); // Test type
+            NUnit.Framework.Assert.AreEqual("Marko", testUcenik.Ime); // Verify it is the right product
         }
 
 
