@@ -109,7 +109,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IBazaPod.cs" />
+    <Compile Include="IKnigaRepository.cs" />
     <Compile Include="IUcenikRepository.cs" />
+    <Compile Include="Kniga.cs" />
+    <Compile Include="KnigaRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PrvTest.cs" />
