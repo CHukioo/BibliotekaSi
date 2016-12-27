@@ -303,7 +303,7 @@ namespace BibliotekaSi
         public readonly IUcenikRepository MockUcenikRepository;
 
         [TestCase]
-        public void CanReturnProductById()
+        public void SelectPoIdUcenikMockTest()
         {
             // Try finding a product by id
             Ucenik testUcenik = this.MockUcenikRepository.SelektPoId(2);
@@ -315,7 +315,7 @@ namespace BibliotekaSi
         }
 
         [TestCase]
-        public void CanReturnAllProducts()
+        public void SelectAllUcenikMockTest()
         {
             // Try finding all products
             IList<Ucenik> testUcenik = this.MockUcenikRepository.Site();
@@ -325,7 +325,7 @@ namespace BibliotekaSi
         }
 
         [TestCase]
-        public void CanInsertProduct()
+        public void InsertUcenikMockTest()
         {
             // Create a new product, not I do not supply an id
             Ucenik novUcenik = new Ucenik
