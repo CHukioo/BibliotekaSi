@@ -12,5 +12,6 @@ namespace BibliotekaSi
         Ucenik SelektPoId(int ucenikid);
         Ucenik SelektPoEmail(string email);
         bool VnesiUcenik(Ucenik target);
+        void DeletPoId(int knigaid);
     }
 }

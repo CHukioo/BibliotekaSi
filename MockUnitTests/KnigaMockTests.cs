@@ -31,6 +31,9 @@ namespace MockUnitTests
             // return a product by Id
             mockKnigaRepository.Setup(mr => mr.SelektPoId(It.IsAny<int>())).Returns((int i) => knigi.Where(x => x.KnigaId == i).Single());
 
+            // delete product by id
+            mockKnigaRepository.Setup(mr => mr.DeletPoId(It.IsAny<int>())).Callback((int kid) => knigi.Where(x => x.KnigaId == kid).Single());
+
             // Allows us to test saving a product
             mockKnigaRepository.Setup(mr => mr.VnesiKniga(It.IsAny<Kniga>())).Returns(
                 (Kniga target) =>
@@ -104,5 +107,15 @@ namespace MockUnitTests
             knigaCount = this.MockKnigaRepository.Site().Count;
             NUnit.Framework.Assert.AreEqual(4, knigaCount); // Verify the expected Number post-insert
         }
+
+        [TestCase]
+        public void DeleteKnigaMockTest()
+        {
+            this.MockKnigaRepository.DeletPoId(1);
+            int knigaCount = this.MockKnigaRepository.Site().Count;
+            NUnit.Framework.Assert.AreEqual(3, knigaCount);
+
+        }
+
     }
 }

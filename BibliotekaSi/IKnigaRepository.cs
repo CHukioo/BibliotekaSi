@@ -11,5 +11,6 @@ namespace BibliotekaSi
         IList<Kniga> Site();
         Kniga SelektPoId(int knigaid);
         bool VnesiKniga(Kniga target);
+        void DeletPoId(int knigaid);
     }
 }

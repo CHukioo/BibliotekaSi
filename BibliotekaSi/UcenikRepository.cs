@@ -27,5 +27,10 @@ namespace BibliotekaSi
         {
             throw new NotImplementedException();
         }
+
+        public void DeletPoId(int knigaid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

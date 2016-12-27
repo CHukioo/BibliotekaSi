@@ -31,8 +31,8 @@ namespace MockUnitTests
             // return a product by Id
             mockUcenikRepository.Setup(mr => mr.SelektPoId(It.IsAny<int>())).Returns((int i) => ucenici.Where(x => x.UcenikId == i).Single());
 
-            // return a product by Name
-            mockUcenikRepository.Setup(mr => mr.SelektPoEmail(It.IsAny<string>())).Returns((string s) => ucenici.Where(x => x.Email == s).Single());
+            // delete product by id
+            mockUcenikRepository.Setup(mr => mr.DeletPoId(It.IsAny<int>())).Callback((int uid) => ucenici.Where(x => x.UcenikId == uid).Single());
 
             // Allows us to test saving a product
             mockUcenikRepository.Setup(mr => mr.VnesiUcenik(It.IsAny<Ucenik>())).Returns(
@@ -111,6 +111,15 @@ namespace MockUnitTests
             // demand a recount
             ucenikCount = this.MockUcenikRepository.Site().Count;
             NUnit.Framework.Assert.AreEqual(4, ucenikCount); // Verify the expected Number post-insert
+        }
+
+        [TestCase]
+        public void DeleteKnigaMockTest()
+        {
+            this.MockUcenikRepository.DeletPoId(1);
+            int ucenikCount = this.MockUcenikRepository.Site().Count;
+            NUnit.Framework.Assert.AreEqual(3, ucenikCount);
+
         }
     }
 }
